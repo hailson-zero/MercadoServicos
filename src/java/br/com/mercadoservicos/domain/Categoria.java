@@ -1,4 +1,3 @@
-
 package br.com.mercadoservicos.domain;
 
 import java.io.Serializable;
@@ -24,11 +23,11 @@ public class Categoria implements Serializable{
     @Size(min=1,max=45)
     @Column(name="descricao")
     private String descricao;
-
-    public Categoria() {
+    
+    public Categoria(){
     }
 
-    public Categoria(Integer id, String descricao) {
+    public Categoria (Integer id, String descricao){
         this.id = id;
         this.descricao = descricao;
     }
@@ -51,9 +50,8 @@ public class Categoria implements Serializable{
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 41 * hash + Objects.hashCode(this.id);
-        hash = 41 * hash + Objects.hashCode(this.descricao);
+        int hash = 7;
+        hash = 53 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -69,9 +67,6 @@ public class Categoria implements Serializable{
             return false;
         }
         final Categoria other = (Categoria) obj;
-        if (!Objects.equals(this.descricao, other.descricao)) {
-            return false;
-        }
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
@@ -82,6 +77,4 @@ public class Categoria implements Serializable{
     public String toString() {
         return "Categoria{" + "id=" + id + ", descricao=" + descricao + '}';
     }
-    
-    
 }
