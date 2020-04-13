@@ -3,11 +3,13 @@
 <hibernate-configuration>
   <session-factory>
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/mercadoservicos</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/mercadoservicos?useSSL=false&amp;useTimezone=true&amp;serverTimezone=UTC</property>
     <property name="hibernate.connection.username">root</property>
-    <property name="hibernate.connection.password">masterkey</property>
+    <property name="hibernate.connection.password">root</property>
     <property name="hibernate.jdbc.use_get_generated_keys">true</property>
     <property name="hibernate.current_session_context_class">thread</property>
     <mapping class="br.com.mercadoservicos.domain.Categoria"/>
+    <mapping class="br.com.mercadoservicos.domain.Servico"/>
+    <mapping class="br.com.mercadoservicos.domain.Usuario"/>
   </session-factory>
 </hibernate-configuration>

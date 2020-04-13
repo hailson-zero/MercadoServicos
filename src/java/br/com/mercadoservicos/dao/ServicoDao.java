@@ -1,19 +1,19 @@
 package br.com.mercadoservicos.dao;
 
-import br.com.mercadoservicos.domain.Categoria;
+import br.com.mercadoservicos.domain.Servico;
 import br.com.mercadoservicos.util.HibernateUtil;
 import java.util.List;
 import org.hibernate.Session;
 
-public class CategoriaDao {
+public class ServicoDao {
     
-    public List<Categoria> listar(){
+    public List<Servico> listar(){
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
         try{
-            List<Categoria> categorias = session.createQuery("from Categoria order by descricao").list();
+            List<Servico> servicos = session.createQuery("from Servico order by descricao").list();
             session.getTransaction().commit();
-            return categorias;
+            return servicos;
         }catch(Exception e){
             e.printStackTrace();
             session.getTransaction().rollback();
@@ -21,13 +21,13 @@ public class CategoriaDao {
         }
     }
     
-    public Categoria consultar(Integer id){
+    public Servico consultar(Integer id){
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
         try{
-            Categoria categoria = (Categoria)session.createQuery("from Categoria where id = " + id).uniqueResult();
+            Servico servico = (Servico)session.createQuery("from Servico where id = " + id).uniqueResult();
             session.getTransaction().commit();
-            return categoria;
+            return servico;
         }catch(Exception e){
             e.printStackTrace();
             session.getTransaction().rollback();
@@ -35,11 +35,11 @@ public class CategoriaDao {
         }
     }
     
-    public boolean inserir(Categoria categoria){
+    public boolean inserir(Servico servico){
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
         try{
-            session.save(categoria);
+            session.save(servico);
             session.getTransaction().commit();
             return true;
         }catch(Exception e){
@@ -49,11 +49,11 @@ public class CategoriaDao {
         }
     }    
     
-     public boolean alterar(Categoria categoria){
+     public boolean alterar(Servico servico){
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
         try{
-            session.update(categoria);
+            session.update(servico);
             session.getTransaction().commit();
             return true;
         }catch(Exception e){
@@ -63,11 +63,11 @@ public class CategoriaDao {
         }
     }    
      
-      public boolean excluir(Categoria categoria){
+      public boolean excluir(Servico servico){
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
         try{
-            session.delete(categoria);
+            session.delete(servico);
             session.getTransaction().commit();
             return true;
         }catch(Exception e){
