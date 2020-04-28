@@ -15,9 +15,14 @@ public class UsuarioController implements Serializable{
     private Usuario usuario = new Usuario();
     private List<Usuario> usuarios;
     private UsuarioService usuarioService = new UsuarioService();
+    private Boolean desabilitaPF = false;
     
     public UsuarioController(){
         listar();
+    }
+    
+    public void inicializarHibernate(){
+        usuarioService.inicializarHibernate();
     }
     
     public void listar(){
@@ -26,6 +31,7 @@ public class UsuarioController implements Serializable{
     
     public String novo(){
         usuario = new Usuario();
+        usuario.setTipo("F");
         return "new.xhtml?faces-redirect=true";
     }
     
@@ -67,6 +73,23 @@ public class UsuarioController implements Serializable{
         UtilMensagens.mensagemErro("Erro", "Ocorreu um erro ao excluir o usuário");
         return null;
     }
+    
+    public void inverteTipo(){
+        if (usuario.getTipo().equals("F")){
+            desabilitaPF = false;
+        }else{
+            desabilitaPF = true;
+        }
+    }
+    
+    public String autenticar(){
+        if (usuarioService.autenticar(usuario)){
+            return "index.xhtml?faces-redirect=true";
+        }else{
+            UtilMensagens.mensagemErro("Dados inválidos!", "Usuário ou senha incorretos!");
+            return null;
+        }
+    }
 
     public List<Usuario> getUsuarios() {
         return usuarios;
@@ -82,5 +105,13 @@ public class UsuarioController implements Serializable{
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
-    }    
+    }   
+
+    public Boolean getDesabilitaPF() {
+        return desabilitaPF;
+    }
+
+    public void setDesabilitaPF(Boolean desabilitaPF) {
+        this.desabilitaPF = desabilitaPF;
+    }
 }
